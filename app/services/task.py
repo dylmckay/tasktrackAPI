@@ -5,7 +5,7 @@ from pathlib import Path
 
 from ..schemas.task import Task, TaskCreate, TaskUpdate
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 DATA_FILE = BASE_DIR / "data" / "entries.json"
 
 
