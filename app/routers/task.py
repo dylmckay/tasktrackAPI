@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, status
-from schemas.task import Task, TaskCreate, TaskUpdate
-from services.task import (
+
+from ..schemas.task import Task, TaskCreate, TaskUpdate
+from ..services.task import (
     DATA_FILE,
     add_task,
     delete_task,

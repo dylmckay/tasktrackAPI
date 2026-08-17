@@ -3,7 +3,7 @@ import logging
 import os
 from pathlib import Path
 
-from schemas.task import Task, TaskCreate, TaskUpdate
+from ..schemas.task import Task, TaskCreate, TaskUpdate
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_FILE = BASE_DIR / "data" / "entries.json"
