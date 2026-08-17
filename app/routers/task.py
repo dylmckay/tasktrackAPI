@@ -36,5 +36,5 @@ def tasks_load() -> list[Task]:
 def task_delete(task_id: int) -> Task:
     deleted_task = delete_task(task_id)
     if deleted_task is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found.")
     return deleted_task
