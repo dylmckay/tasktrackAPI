@@ -22,7 +22,9 @@ async def task_add(new_task: TaskCreate, db: DbSession) -> Task:
 async def task_update(task_id: int, task_update: TaskUpdate, db: DbSession) -> Task:
     updated_task = await update_task(task_id, task_update, db)
     if updated_task is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found.")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="Task not found."
+        )
     return updated_task
 
 
