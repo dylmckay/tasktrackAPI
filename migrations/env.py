@@ -6,7 +6,7 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import create_async_engine
 
-from app.db import get_settings
+from app.config import get_settings
 from app.models.task import Base
 
 settings = get_settings()
