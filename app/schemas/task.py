@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 
 
 class TaskCreate(BaseModel):
-    description: str
+    description: str = Field(max_length=255)
 
 
 class Task(BaseModel):
@@ -12,5 +12,5 @@ class Task(BaseModel):
 
 
 class TaskUpdate(BaseModel):
-    description: str | None = None
+    description: str | None = Field(default=None, max_length=255)
     done: bool | None = None
