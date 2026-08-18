@@ -70,7 +70,7 @@ async def run_async_migrations() -> None:
     """
 
     connectable = create_async_engine(
-        str(settings.database_url),
+        settings.database_url.unicode_string(),
         poolclass=pool.NullPool,
     )
 
