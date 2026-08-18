@@ -45,4 +45,3 @@ async def delete_task(task_id: int, db: AsyncSession) -> Task | None:
         await db.delete(task_model)
         await db.commit()
         return task_schema
-
