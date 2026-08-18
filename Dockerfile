@@ -14,5 +14,8 @@ RUN uv sync --frozen
 # Then copy everything else
 COPY . /app/
 
+# Make entrypoint.sh executable
+RUN chmod +x /app/entrypoint.sh
+
 # Run FastAPI app (uvicorn)
-CMD ["uv", "run", "fastapi", "run", "app/main.py", "--host", "0.0.0.0"]
+ENTRYPOINT [ "/app/entrypoint.sh" ]
