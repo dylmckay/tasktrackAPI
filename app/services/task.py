@@ -35,6 +35,7 @@ async def update_task(
             task_model.done = task_update.done
 
         await db.commit()
+        await db.refresh(task_model)
         return Task.model_validate(task_model)
 
 
