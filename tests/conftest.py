@@ -9,7 +9,7 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker,
     create_async_engine,
 )
-from testcontainers.postgres import PostgresContainer
+from testcontainers.community.postgres import PostgresContainer
 
 from app.db import get_db
 from app.main import app
@@ -22,12 +22,12 @@ def pg_container() -> Generator[PostgresContainer]:
         yield pg
 
 
-@pytest_asyncio.fixture(scope="session")
+@pytest_asyncio.fixture(scope="function")
 async def db_engine(pg_container: PostgresContainer) -> AsyncGenerator[AsyncEngine]:
     url = pg_container.get_connection_url(driver="asyncpg")
     engine = create_async_engine(url)
 
-    async with engine.connect() as connection:
+    async with engine.begin() as connection:
         await connection.run_sync(Base.metadata.create_all)
 
     yield engine
@@ -44,6 +44,7 @@ async def db_session(db_engine: AsyncEngine) -> AsyncGenerator[AsyncSession]:
             bind=connection, join_transaction_mode="create_savepoint"
         )
         yield session
+        await session.close()
         await transaction.rollback()
 
 
